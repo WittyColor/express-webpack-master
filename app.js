@@ -4,7 +4,7 @@ var favicon = require('serve-favicon'); //处理收藏夹图标的
 var logger = require('morgan'); //写日志
 var cookieParser = require('cookie-parser'); //解析cookie，req.cookie属性存放着客户端提交过来的cookie，// req.cookie（key.value）向客户端写cookie
 var bodyParser = require('body-parser');// 处理请求体的req.body 属性存放着请求体对象
-var redis = require('redis');
+// var redis = require('redis');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -25,11 +25,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/public',express.static(path.join(__dirname, 'public')));
 
-var redisClient = redis.createClient(6379,config.options.host,{});
-//redis需要密码有底下两种写法
-redisClient.auth(config.options.pass,function () {
-  console.log('认证通过');
-})
+// var redisClient = redis.createClient(6379,config.options.host,{});
+// //redis需要密码有底下两种写法
+// redisClient.auth(config.options.pass,function () {
+//   console.log('认证通过');
+// })
 // var redisClient = redis.createClient(6379,config.options.host,{auth_pass:config.options.pass});
 
 //redis单个设值和取值
@@ -54,30 +54,30 @@ redisClient.auth(config.options.pass,function () {
 // })
 
 //redis打包执行多个命令
-redisClient.on('connect',function () {
-  var key = 'skill';
-  redisClient.sadd(key,'C#');
-  redisClient.sadd(key,'nodejs');
-  redisClient.sadd(key,'SQL');
-  
-  redisClient.multi().sismember(key,'SQL')
-    .smembers(key)
-    .exec(function (err,results) {
-      console.log("MULTI got " + results.length + " replies");
-      results.forEach(function (reply, index) {
-        console.log("Reply " + index + ": " + reply.toString());
-      });
-      redisClient.quit();
-    })
-})
-
-redisClient.on('ready',function(err){
-	console.log('ready:Redis链接成功');
-});
-
-redisClient.on('end',function (err) {
-  console.log('end');
-})
+// redisClient.on('connect',function () {
+//   var key = 'skill';
+//   redisClient.sadd(key,'C#');
+//   redisClient.sadd(key,'nodejs');
+//   redisClient.sadd(key,'SQL');
+//
+//   redisClient.multi().sismember(key,'SQL')
+//     .smembers(key)
+//     .exec(function (err,results) {
+//       console.log("MULTI got " + results.length + " replies");
+//       results.forEach(function (reply, index) {
+//         console.log("Reply " + index + ": " + reply.toString());
+//       });
+//       redisClient.quit();
+//     })
+// })
+//
+// redisClient.on('ready',function(err){
+// 	console.log('ready:Redis链接成功');
+// });
+//
+// redisClient.on('end',function (err) {
+//   console.log('end');
+// })
 
 app.use('/', index);
 app.use('/users', users);
