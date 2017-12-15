@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Tools = require('./../utils/tools'); // 判断浏览器版本
+var Middleware = require('./../request/middlewares');
 
 router.use(function (req,res,next) {
   console.log('now---->'+ Tools.getNowFormatDate(new Date()));
@@ -17,10 +18,11 @@ router.use(function (req,res,next) {
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', Middleware.getIndexData, function(req, res, next) {
   res.render('index', {
-    title: '小丸子呀',
-    description:'这是我的个人网站'
+    title: '小丸子啊',
+    description:'这是汪满艳小丸子的个人网站',
+    data:req.data
   });
 });
 

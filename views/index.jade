@@ -1,5 +1,9 @@
 extends layout
 
 block content
+  .header
+    ul
+      each item in data.navList
+        li #{item.name}
   h1= title
   p Welcome to #{title}
