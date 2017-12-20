@@ -1,14 +1,5 @@
-extends ../layout
-
-block content
-    link(href='/public/css/user/user_detail.css',rel='styleSheet')
-    include ../includes/header
-    section
-        each value,key in data
-            -var table = 'table'+key;
-            -var Days = 'scheduleForSevenDays0'+key;
-            p #{table}
-            p #{Days}
-
-    include ../includes/footer
-    script(src="/public/js/user/user_detail.js",type="text/javascript",charset="UTF-8")
+html
+    head
+        title demo
+    body 4524545
+        include ../includes/a.jade

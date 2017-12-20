@@ -8,6 +8,7 @@
   - bin：node启动
   - client：js和sass文件
   - config：各个不同环境的配置文件（beta：测试环境；prod：生产环境）
+  - webpack_config：webpack的配置文件
   - node_modules：node依赖的包
   - public：外部访问的文件夹，如js、css、images。这里的js和css是由client中的文件编译而成的。
   - routes：路由文件夹（用来处理浏览器请求，并返回相关数据给浏览器）
@@ -15,11 +16,6 @@
   - utils：工具
   - views：存放jade文件（由node用数据渲染生成HTML）
   - app.js:入口文件
-
-## 这里放张图片占位
-
-<img width="500"  src="http://tva2.sinaimg.cn/crop.0.0.480.480.180/b0215301jw8ec2mmcxuq6j20dc0dcwep.jpg">
-
 
 ## Build Setup
 

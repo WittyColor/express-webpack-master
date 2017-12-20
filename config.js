@@ -16,6 +16,9 @@ try{
   } else if(env == 'development'){
     console.log('开发环境配置');
     var config = require('./config/development');
+  } else if(env == 'production'){
+    console.log('生产环境配置');
+    var config = require('./config/production');
   }
 }catch (err){
   console.error('Cannot load config: [%s] %s', env);

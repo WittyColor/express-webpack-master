@@ -18,12 +18,8 @@ gulp.task('minify-js',function(){
 
 //编译sass
 gulp.task('sass',function(){
-  return gulp.src(srcPaths.sass)
-    .pipe(plugins.sass())
-    .pipe(plugins.autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
+  plugins.rubySass(srcPaths.sass)
+    .on('err',plugins.rubySass.logError)
     .pipe(gulp.dest('public/css'));
 });
 
@@ -33,6 +29,13 @@ gulp.task('cssmin',function(){
     .pipe(plugins.minifyCss())
     .pipe(gulp.dest('public/css'));
 });
+
+//js代码检查
+// gulp.task('jsLint',function(){
+//   gulp.src(srcPaths.js)
+//     .pipe(plugins.jshint())
+//     .pipe(plugins.jshint.reporter());
+// });
 
 //自动刷新当前界面
 gulp.task('watch',function () {

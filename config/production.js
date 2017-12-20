@@ -1,7 +1,6 @@
 /*
-*   测试环境的配置
+*   生产环境的配置
 */
-
 
 var config = {
   apiHost: 'http://shop.dmp.hzjiehun.bid',

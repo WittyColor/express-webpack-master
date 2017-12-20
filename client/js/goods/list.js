@@ -1,3 +1,3 @@
-$(function(){
-  alert('goods_list;');
-})
+require('../../../views/demo/index.jade')
+console.log(322222)
+

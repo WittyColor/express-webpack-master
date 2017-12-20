@@ -22,7 +22,6 @@ router.get('/detail/:a', function(req,res,next){
   next();
 },handler.get_user_detail);
 
-
 router.get('/show', function(req,res,next){
   console.log('------------------------');
   console.log(req.hostname);

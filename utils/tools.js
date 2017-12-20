@@ -26,6 +26,7 @@ exports.browser = function (req) {
     return browser
 }
 
+//获取当前日期
 exports.getNowFormatDate = function (date) {
   var seperator1 = "-";
   var seperator2 = ":";
@@ -41,4 +42,34 @@ exports.getNowFormatDate = function (date) {
     + " " + date.getHours() + seperator2 + date.getMinutes()
     + seperator2 + date.getSeconds();
   return currentdate;
+}
+
+// 将一个对象转化成一个 字符串
+exports.obj2String = function(_obj) {
+  var t = typeof (_obj)
+  if (t != 'object' || _obj === null) {
+    // simple data type
+    if (t == 'string') {
+      _obj = '"' + _obj + '"'
+    }
+    return String(_obj)
+  } else {
+    if (_obj instanceof Date) {
+      return _obj.toLocaleString()
+    }
+    // recurse array or object
+    var n, v, json = [],
+      arr = (_obj && _obj.constructor == Array)
+    for (n in _obj) {
+      v = _obj[n]
+      t = typeof (v)
+      if (t == 'string') {
+        v = '"' + v + '"'
+      } else if (t == 'object' && v !== null) {
+        v = obj2String(v)
+      }
+      json.push((arr ? '' : '"' + n + '":') + String(v))
+    }
+    return (arr ? '[' : '{') + String(json) + (arr ? ']' : '}')
+  }
 }

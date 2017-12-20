@@ -4,3 +4,4 @@ public/
 npm-debug.log
 .idea
 .sass-cache
+package-lock.json
