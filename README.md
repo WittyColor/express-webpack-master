@@ -17,6 +17,11 @@
   - views：存放jade文件（由node用数据渲染生成HTML）
   - app.js:入口文件
 
+## 这里放张图片占位
+
+<img width="500"  src="http://tva2.sinaimg.cn/crop.0.0.480.480.180/b0215301jw8ec2mmcxuq6j20dc0dcwep.jpg">
+
+
 ## Build Setup
 
 
