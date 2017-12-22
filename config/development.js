@@ -15,6 +15,7 @@ var config = {
   ident2:'http://ikz2ydxo.gic.bgp.cnbj01.cdsgss.com/rest/926374521714245632ident2.png',//参考示例身份证反面
   customsDeclaration:'http://9gz846cx.gic.bgp.cnbj01.cdsgss.com/rest/928101959427162112.png',//参考示例海关报关单
 
+  
   options: {
     'host': '127.0.0.1',
     'port': '6379',

@@ -1,4 +1,3 @@
-require('../../sass/user/user.scss')
-
-var a = 3;
-alert(a)
+$(function () {
+  console.log('1111111111');
+})

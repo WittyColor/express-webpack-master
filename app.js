@@ -12,6 +12,7 @@ var redisStore = require('connect-redis')(session);
 // 把使用的路由文件引进来
 var index = require('./routes/index');
 var users = require('./routes/users');
+var goods = require('./routes/goods');
 
 
 var app = express();
@@ -64,7 +65,8 @@ app.use(session({
 // app.locals.moment = require('moment');
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/user', users);
+app.use('/goods', goods);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

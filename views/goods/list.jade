@@ -1,5 +1,10 @@
-html
-    head
-        title
-    body 
-        p woshiyigexiaoxiaodeshitoiu
+extends ../layout
+
+block content
+    link(href='/public/css/goods/list.min.css',rel='styleSheet')
+    include ../includes/header
+
+    div 这里是商品列表
+
+    include ../includes/footer
+    script(src="/public/js/goods/list.min.js",type="text/javascript",charset="UTF-8")

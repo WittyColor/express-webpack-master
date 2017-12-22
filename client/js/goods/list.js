@@ -1,3 +1,3 @@
-require('../../../views/demo/index.jade')
-console.log(322222)
-
+$(function () {
+  console.log('1111111111');
+})

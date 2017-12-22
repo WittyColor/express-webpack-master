@@ -1,5 +1,11 @@
-html
-    head
-        title demo
-    body 4524545
-        include ../includes/a.jade
+extends ../layout
+
+block content
+    link(href='/public/css/user/user_detail.min.css',rel='styleSheet')
+    include ../includes/header
+
+    div
+        p 这里是用户详情列表
+
+    include ../includes/footer
+    script(src="/public/js/user/user_detail.min.js",type="text/javascript",charset="UTF-8")

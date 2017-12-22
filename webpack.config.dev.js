@@ -9,7 +9,7 @@ const postcssImport = require('postcss-import');
 //获取所有入口文件配置
 const output = require('./output');
 //获取插件配置
-const base_plugin = require('./webpack_config/base.plugin');
+const dev_plugin = require('./webpack_config/dev.plugin');
 
 function resolve(dir) {
     return path.join(__dirname, '.', dir)
@@ -18,7 +18,7 @@ module.exports = {
     devtool: '#source-map',
     entry: output.entryStr(),
     output: {
-        filename: 'js/[name].min.js',
+        filename: 'public/js/[name].min.js',
         path: path.join(__dirname, 'public'),
         //publicPath 上线替换真实的http,如果设置为/则需把dist下的文件放在项目的根目录
         publicPath: '/'
@@ -88,17 +88,14 @@ module.exports = {
             },
             {
                 test: /\.jade$/,
-                loader: "pug-loader",
-                options: {
-                    pretty: true
-                }
+                loader: "pug-loader"
             },
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/images/[name].[ext]',
+                    name: 'public/static/images/[name].[ext]',
                 }
             },
             {
@@ -106,10 +103,18 @@ module.exports = {
                 loader: 'url-loader',
                 options: {
                     limit: 10000,
-                    name: 'static/fonts/[name].[ext]'
+                    name: 'public/static/fonts/[name].[ext]'
                 }
             }
         ]
     },
-    plugins: base_plugin
+    plugins: dev_plugin,
+    devServer: {
+        contentBase: './',
+        host: 'localhost',
+        compress: true,
+        port: 9000,
+        inline: true,
+        hot: true
+    }
 };

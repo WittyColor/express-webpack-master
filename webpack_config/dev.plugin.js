@@ -5,35 +5,30 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path')
 const output = require('../output');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const base_plugin = [
-    new UglifyJSPlugin({
-        sourceMap: true,
-        uglifyOptions: {
-            wranings: false,
-            output: {
-                comments: false,
-                beautify: false
-            }
-        }
+    new ExtractTextPlugin({                             //css处理，dev环境不压缩js
+        filename: 'public/css/[name].min.css'
     }),
-    new ExtractTextPlugin({
-         filename: 'css/[name].min.css'
-    }),
-    new CopyWebpackPlugin([{
-        from: path.join(__dirname, '../static'),
-        to: path.join(__dirname, '../public/static'),
-        force: true
+    new CopyWebpackPlugin([{                            //静态文件处理
+        from: './static',
+        to: './public/static'
     }]),
+    new webpack.HotModuleReplacementPlugin(),           //热更新模块
     new webpack.DefinePlugin({                          //设置变量，打包移除jade
-        'process.env.NODE_ENV': JSON.stringify('production')
+        'process.env.NODE_ENV': JSON.stringify('dev')
+    }),
+    new OpenBrowserPlugin({                             //打开浏览器
+        url: 'http://localhost:9000' 
     })
 ]
 /*遍历页面，添加配置*/
-output.htmlsPluginStr().forEach((page)=>{
+output.htmlsPluginStr().forEach((page) => {
+    page.template = page.template.split('.')[1];
     const htmlPlugin = new HtmlWebpackPlugin({
         template: page.filepath,
         jade: page.filepath,
-        filename: `${page.template}/${page.fileleft}.html`,
+        filename: `public${page.template}/${page.fileleft}.html`,
         chunks: ['vendors', page.chuckName],
         minify: false,
         inject: 'body'
