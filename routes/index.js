@@ -17,11 +17,10 @@ router.use(function (req,res,next) {
 })
 
 /* GET home page. */
-router.get('/', requests.get_goods_list, function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', {
     title: '111111',
     description:'这是我的个人网站',
-    list:req.data.data.list
   });
 });
 
